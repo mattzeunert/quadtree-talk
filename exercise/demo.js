@@ -85,7 +85,16 @@ function imageToBw(image, imageData) {
 }
 
 function rotate(qt) {
-    return qt.slice(1).concat([qt[0]]);
+    if (typeof qt === "boolean") {
+        return qt;
+    }
+    var newQt = [
+        qt[1],
+        qt[3],
+        qt[0],
+        qt[2]
+    ]
+    return newQt.map(rotate);
 }
 
 function drawTree(ctx, tree, dimension) {
